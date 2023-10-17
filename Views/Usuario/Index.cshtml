@@ -1,0 +1,62 @@
+﻿@model UsuarioModel;
+@{
+    Layout = null;
+ }
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+
+<div class="container-fluid">
+    <div class="row">
+        <br />
+        <div class="col-12 p-3">
+            <h1 class="text-center">
+                <i class="bi bi-music-note-beamed"></i>
+                Festival de musica Valhalla
+                <i class="bi bi-music-note-beamed"></i>
+            </h1>
+            <hr />
+        </div>
+        <div class="col-3">
+            <!--LADO ESQUERDO-->
+        </div>
+        <div class="col-6 bg-secondary p-5 position-absolute top-50 start-50 translate-middle  mt-5" style="width:50%; height:55.5%; border-radius:25px" id="div_pricipal">
+            <!--CENTRO-->
+            <h2 class="text-center text-white fixed-top">Bem vindo ao festival !!!!!</h2>
+            <br />
+            <br />
+            <h5 class="text-center text-white ">Faça login para continuar: </h5>
+            <form class="form-floating">
+
+                <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Nome:</label>
+                    <input type="text" class="form-control" id="t" placeholder="Nome completo">
+                </div>
+                <span class="text-danger" asp-validation-for="Nome"></span>
+
+                <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="t" placeholder="Digite seu email">
+                </div>
+                <span class="text-danger" asp-validation-for="Email"></span>
+
+                <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Senha:</label>
+                    <input type="password" class="form-control" id="t" placeholder="Sua senha">
+                </div>
+                <span class="text-danger" asp-validation-for="Senha"></span>
+
+
+                <button class="btn btn-info text-end w-35" style="border-radius:15px;margin-left:87%" asp-controller="Albuns" asp-action="Index">Entrar</button>
+
+                <a style="margin:20%" asp-controller="Usuario" asp-action="Cadastrar">Cadastrar novo</a>
+
+            </form>
+        </div>
+        <div class="col-3">
+            <!--LADO DIREITO-->
+        </div>
+    </div>
+</div>

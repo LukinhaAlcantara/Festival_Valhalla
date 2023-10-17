@@ -1,0 +1,89 @@
+﻿@model IEnumerable<AlbumModel>
+
+@{
+    ViewData["Title"] = "Página inicial";
+
+    ComentarioModel comet = new ComentarioModel();
+}
+
+<br />
+<h2 class="text-center" style="color: #0401fe;">Albuns</h2>
+<hr class="hr" size="7"  style="background-color:blue"/>
+<br />
+
+<div class="row g-4">
+    @foreach(var card in Model)
+    {
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+            <div class="card border-3 bg-dark">
+                <img src="~/imagens/disco/@card.CoverUrl" class="card-img-top" alt="...">
+                <div class="card-body text-white text-center">
+                    <h3 class="card-title text-primary"><!--Título-->@card.Titulo</h3>
+                    <h5><!--Artista-->@card.Artista</h5>
+                    <h5><!--Ano-->@card.Ano</h5>
+                    <button type="button" class="btn btn-outline-primary h1" data-bs-toggle="modal" data-bs-target="#Modal_@card.ID">
+                        Comentarios
+                    </button>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="Modal_@card.ID" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Comentários</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <form method="post" asp-controller="Comentario" asp-action="Comentar">
+                                    <img src="~/imagens/disco/@card.CoverUrl" class="card-img-top" alt="...">
+                                    <h3 class="card-title text-primary"><!--Título-->@card.Titulo</h3>
+                                    <h5><!--Artista-->@card.Artista</h5>
+                                    <h5><!--Ano-->@card.Ano</h5>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Comentario</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="comentario"></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Sair</button>
+                                        <button type="submit" class="btn btn-outline-success">Salvar</button>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    </div>
+        }
+</div>
+
+<style>
+    .pai
+    {
+        display:flex;
+        flex-wrap: wrap;
+        max-width:100%;
+        justify-content:center
+    }
+
+    #card
+    {
+        flex: 1 1 350px;
+        margin:20px;
+    }
+
+    #card:hover
+    {
+        cursor:pointer;
+        box-shadow: 0 0 10px dimgray, 0 0 40px dimgray, dimgray;
+    }
+</style>
+
+<script>
+    const myModal = document.getElementById('myModal')
+    const myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', () => {
+        myInput.focus()
+    })
+</script>
